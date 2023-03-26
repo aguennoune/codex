@@ -42,7 +42,7 @@ app.post('/', async (req, res) => {
       top_p: 1.0,
       frequency_penalty: 0.5,
       presence_penalty: 0.0,
- ,     // stop: ["You:"],
+      stop: ["You:"],
     });
 
     res.status(200).send({
