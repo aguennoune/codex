@@ -35,14 +35,14 @@ app.post('/', async (req, res) => {
     //   presence_penalty: 0, // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
     // });
     const response = await openai.createCompletion({
-      model: "code-davinci-003",
-      prompt: `${prompt}`,
+      model: "code-davinci-002",
+      prompt: "\"\"\"\nUtil exposes the following:\nutil.openai() -> authenticates & returns the openai module, which has the following functions:\nopenai.Completion.create(\n    prompt=\"<my prompt>\", # The prompt to start completing from\n    max_tokens=123, # The max number of tokens to generate\n    temperature=1.0 # A measure of randomness\n    echo=True, # Whether to return the prompt in addition to the generated completion\n)\n\"\"\"\nimport util\n\"\"\"\nCreate an OpenAI completion starting from the prompt \"Once upon an AI\", no more than 5 tokens. Does not include the prompt.\n\"\"\"\n",
       temperature: 0,
-      max_tokens: 3000,
+      max_tokens: 64,
       top_p: 1.0,
-      frequency_penalty: 0.5,
+      frequency_penalty: 0.0,
       presence_penalty: 0.0,
-      stop: ["You:"],
+      stop: ["\"\"\""],
     });
 
     res.status(200).send({
