@@ -35,14 +35,14 @@ app.post('/', async (req, res) => {
     //   presence_penalty: 0, // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
     // });
     const response = await openai.createCompletion({
-      model: "code-davinci-002",
-      prompt: "You: How do I combine arrays?\nJavaScript chatbot: You can use the concat() method.\nYou: How do you make an alert appear after 10 seconds?\nJavaScript chatbot",
+      model: "code-davinci-003",
+      prompt: `${prompt}`,
       temperature: 0,
-      max_tokens: 60,
+      max_tokens: 3000,
       top_p: 1.0,
       frequency_penalty: 0.5,
       presence_penalty: 0.0,
-      stop: ["You:"],
+      // stop: ["You:"],
     });
 
     res.status(200).send({
